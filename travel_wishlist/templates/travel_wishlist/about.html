@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+</head>
+<body>
+    <h2>About</h2>
+    {{ about }}             # variable django template format
+
+    {% if author %}         # logic django template format
+    <p>By {{ author }}</p>
+
+    {% else %}
+    <p>by nobody</p>
+
+    {% endif %}
+</body>
+</html>
