@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Visited</title>
-</head>
-<body>
+{% extends 'travel_wishlist/base.html' %}
+{% block content %}
+
     <h2>Visited Places</h2>
         {% if visited %}
         <ul>
@@ -13,7 +9,7 @@
             {% endfor %}
         </ul>
         {% else %}
-        <p> You need to travel more... </p>
+        <p>You need to travel more...</p>
         {% endif %}
-</body>
-</html>
+
+{% endblock %}

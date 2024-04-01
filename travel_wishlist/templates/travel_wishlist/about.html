@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>About</title>
-</head>
+{% extends 'travel_wishlist/base.html' %}
+{% block content %}
 <body>
     <h2>About</h2>
-    {{ about }}             # variable django template format
+    {{ about }}            <!-- variable django template format -->
 
-    {% if author %}         # logic django template format
+    {% if author %}         <!-- logic django template format -->
     <p>By {{ author }}</p>
 
     {% else %}
@@ -16,4 +12,4 @@
 
     {% endif %}
 </body>
-</html>
+{% endblock %}
