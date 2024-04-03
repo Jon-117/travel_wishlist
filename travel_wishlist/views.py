@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Place
 from .forms import NewPlaceForm
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 # Create your views here.
 def place_list(request):  # must have 1 arg: request
 
@@ -25,11 +27,13 @@ def about(request):
     return render(request, 'travel_wishlist/about.html', {'author': author, 'about': about})
 
 
+@login_required
 def visited(request):
     visited = Place.objects.filter(visited=True).order_by('name')
     return render(request, 'travel_wishlist/visited.html', {'visited': visited})
 
 
+@login_required
 def place_was_visited(request, place_pk):
     if request.method == 'POST':
         place = get_object_or_404(Place, pk=place_pk)
