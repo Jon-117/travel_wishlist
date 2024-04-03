@@ -10,12 +10,13 @@ def place_list(request):  # must have 1 arg: request
 
     if request.method == 'POST':  # Create new Place
         form = NewPlaceForm(request.POST)
-        place = form.save()  # Creates a model object from form inputs
+        place = form.save(commit=False)  # Creates a model object from form inputs
+        place.user = request.user
         if form.is_valid():  # Validation against DB constraints
             place.save()     # Saves place to DB
             return redirect('place_list')  # Reloads home page (which we've named 'place_list')
 
-    places = Place.objects.filter(visited=False).order_by('name')
+    places = Place.objects.filter(user=request.user).filter(visited=False).order_by('name')
     # places = Place.objects.all()
     new_place_form = NewPlaceForm()
     return render(request, 'travel_wishlist/wishlist.html', {'places': places, 'new_place_form': new_place_form})
@@ -40,4 +41,11 @@ def place_was_visited(request, place_pk):
         place.visited = True
         place.save()
     return redirect('place_list')
+
+
+@login_required
+def place_details(request, place_pk):
+    place = get_object_or_404(Place, pk=place_pk)
+    return render(request, 'travel_wishlist/place_detail.html', {'place': place})
+
 
