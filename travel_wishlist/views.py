@@ -74,8 +74,8 @@ def place_details(request, place_pk):
         # if GET, show place & form
         # if place is visited show form, else no form shown.
         if place.visited:
-            reveiw_form = TripReviewForm(instance=place)
-            return render(request, 'travel_wishlist/place_detail.html', {'place':place, 'reveiw_form': reveiw_form})
+            review_form = TripReviewForm(instance=place)
+            return render(request, 'travel_wishlist/place_detail.html', {'place':place, 'review_form': review_form})
         else:
             return render(request, 'travel_wishlist/place_detail.html', {'place':place})
 
