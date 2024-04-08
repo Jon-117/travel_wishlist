@@ -6,4 +6,17 @@ class NewPlaceForm(forms.ModelForm):
     class Meta:
         model = Place
         fields = ['name', 'visited']
-        # fields = ['name', 'visited', 'user', 'notes', 'date_visited', 'photo']
+
+
+class DateInput(forms.DateInput):
+    """
+    Date input widget for trip review form
+    """
+    input_type = 'date'
+
+
+class TripReviewForm(forms.ModelForm):
+    class Meta:
+        model = Place
+        fields = ['notes', 'date_visited', 'photo']
+        widgets = {'date_visited': DateInput()}
